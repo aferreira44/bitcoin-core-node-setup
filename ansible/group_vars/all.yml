@@ -1,0 +1,3 @@
+# Contents of group_vars/all.yml
+bitcoin_version: "{{ lookup('ansible.builtin.env', 'BITCOIN_VERSION') }}"
+scripts_directory: "{{ lookup('ansible.builtin.env', 'SCRIPTS_DIRECTORY') }}"

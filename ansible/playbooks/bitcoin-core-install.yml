@@ -1,0 +1,70 @@
+---
+- name: Installation of Bitcoin Core
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Load environment variables from group_vars/all.yml
+      include_vars:
+        file: ../group_vars/all.yml
+
+    - name: Download bitcoin tar.gz file
+      shell: curl "https://bitcoin.org/bin/bitcoin-core-{{ bitcoin_version }}/bitcoin-{{ bitcoin_version }}-x86_64-linux-gnu.tar.gz" --output bitcoin-{{ bitcoin_version }}-x86_64-linux-gnu.tar.gz
+      args:
+        chdir: "{{ scripts_directory }}"
+
+    # - name: Extract bitcoin tar.gz file
+    #   shell: tar xzf bitcoin-{{ bitcoin_version }}-x86_64-linux-gnu.tar.gz
+    #   args:
+    #     chdir: "{{ scripts_directory }}"
+
+    # - name: Install bitcoin binaries
+    #   shell: sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-{{ bitcoin_version }}/bin/*
+
+    # - name: Run bitcoind help command
+    #   shell: bitcoind help
+
+    # - name: Run bitcoind -h command
+    #   shell: bitcoind -h
+
+    # - name: Run bitcoin-cli command
+    #   shell: bitcoin-cli
+
+    # - name: Create signet directory
+    #   file:
+    #     path: "{{ scripts_directory }}/signet"
+    #     state: directory
+
+    # - name: Create bitcoin.conf file
+    #   copy:
+    #     content: |
+    #       # Contents of bitcoin.conf file go here
+    #     dest: "{{ scripts_directory }}/signet/bitcoin.conf"
+
+    # - name: Start bitcoind with datadir=signet
+    #   shell: bitcoind -datadir=signet
+    #   args:
+    #     chdir: "{{ scripts_directory }}"
+
+    # - name: Get connection count using bitcoin-cli with datadir=signet
+    #   shell: bitcoin-cli -datadir=signet getconnectioncount
+
+    # - name: Get block count using bitcoin-cli with datadir=signet
+    #   shell: bitcoin-cli -datadir=signet getblockcount
+
+    # # Add more tasks for the remaining commands
+
+    # - name: Run df -H command
+    #   shell: df -H
+
+    # - name: Get block count using bitcoin-cli with datadir=signet
+    #   shell: bitcoin-cli -datadir=signet getblockcount
+
+    # - name: Show command history
+    #   shell: history
+
+    # - name: Show ls command output
+    #   shell: ls
+
+    # - name: Show command history
+    #   shell: history
